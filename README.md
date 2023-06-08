@@ -1,1 +1,1 @@
-# kanban-projekti
+# Kanban-projekti
