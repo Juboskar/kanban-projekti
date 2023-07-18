@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import path from "path";
 import { DataTypes, Model, Sequelize } from "sequelize";
 
 dotenv.config();
@@ -35,8 +36,10 @@ app.get("/api/notes", async (_req, res) => {
   res.json(notes);
 });
 
-app.get("/", (_req, res) => {
-  res.send("<h1>Hello World!</h1>");
+app.use(express.static(path.join(__dirname, "./frontend")));
+
+app.get("*", (_req, res) => {
+  res.sendFile(path.join(__dirname, "./frontend/index.html"));
 });
 
 const PORT = process.env.PORT || 8080;

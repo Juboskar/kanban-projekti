@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node build/index.js",
-    "tsc": "tsc",
+    "tsc": "rm -rf build && tsc",
+    "build": "rm -rf build && tsc && cd ../kanban-frontend && npm run build && mv build frontend && cp -r frontend ../kanban-backend/build && rm -rf frontend",
     "dev": "ts-node-dev index.ts",
     "lint": "eslint --ext .ts .",
     "test": "echo \"Error: no test specified\" && exit 1"
