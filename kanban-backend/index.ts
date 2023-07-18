@@ -1,13 +1,13 @@
-import express from "express";
-import dotenv from "dotenv";
-import path from "path";
-import { DataTypes, Model, Sequelize } from "sequelize";
+import express from 'express';
+import dotenv from 'dotenv';
+import path from 'path';
+import { DataTypes, Model, Sequelize } from 'sequelize';
 
 dotenv.config();
 
 const app = express();
 
-const sequelize = new Sequelize(process.env.DATABASE_URL as any);
+const sequelize = new Sequelize(process.env.DATABASE_URL as string);
 
 class Note extends Model {}
 
@@ -27,19 +27,19 @@ Note.init(
     sequelize,
     underscored: true,
     timestamps: false,
-    modelName: "note",
+    modelName: 'note',
   }
 );
 
-app.get("/api/notes", async (_req, res) => {
+app.get('/api/notes', async (_req, res) => {
   const notes = await Note.findAll();
   res.json(notes);
 });
 
-app.use(express.static(path.join(__dirname, "./frontend")));
+app.use(express.static(path.join(__dirname, './frontend')));
 
-app.get("*", (_req, res) => {
-  res.sendFile(path.join(__dirname, "./frontend/index.html"));
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(__dirname, './frontend/index.html'));
 });
 
 const PORT = process.env.PORT || 8080;
