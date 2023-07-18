@@ -1,13 +1,36 @@
-name: Fly Deploy
+name: Main branch CI/CD
 on:
-  workflow_run:
-    workflows: ["Tests"]
+  push:
     branches:
       - main
-    types: completed
 jobs:
+  frontend:
+    name: Frontend tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: kanban-frontend
+    steps:
+      - uses: actions/checkout@v3
+      - name: install packages
+        run: npm install
+      - name: lint
+        run: npm run lint
+  backend:
+    name: Backend tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: kanban-backend
+    steps:
+      - uses: actions/checkout@v3
+      - name: install packages
+        run: npm install
+      - name: lint
+        run: npm run lint
   deploy:
     name: Deploy app
+    needs: [frontend, backend]
     runs-on: ubuntu-latest
     defaults:
       run:
