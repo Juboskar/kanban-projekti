@@ -9,7 +9,7 @@
     "build": "npm install && rm -rf build && tsc && cd ../kanban-frontend && npm install && npm run build && mv build frontend && cp -r frontend ../kanban-backend/build && rm -rf frontend",
     "dev": "ts-node-dev index.ts",
     "lint": "eslint --ext .ts .",
-    "test": "jest --verbose --runInBand --coverage"
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --coverage"
   },
   "author": "juboskar",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^5.0.0",
