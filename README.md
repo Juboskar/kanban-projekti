@@ -1,4 +1,4 @@
 # Kanban-projekti
 
-![Main CI/CD](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
-![Dev tests](https://github.com/github/docs/actions/workflows/dev.yml/badge.svg)
+![Main CI/CD](https://github.com/juboskar/kanban-projekti/actions/workflows/main.yml/badge.svg)
+![Dev tests](https://github.com/juboskar/kanban-projekti/workflows/dev.yml/badge.svg)
