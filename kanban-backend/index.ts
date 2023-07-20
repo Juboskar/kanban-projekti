@@ -1,48 +1,10 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import path from 'path';
-import { DataTypes, Model, Sequelize } from 'sequelize';
+import http from 'http';
+import app from './src/app';
+import { PORT } from './src/utils/config';
+import logger from './src/utils/logger';
 
-dotenv.config();
+const server = http.createServer(app);
 
-const app = express();
-
-const sequelize = new Sequelize(process.env.DATABASE_URL as string);
-
-class Note extends Model {}
-
-Note.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-  },
-  {
-    sequelize,
-    underscored: true,
-    timestamps: false,
-    modelName: 'note',
-  }
-);
-
-app.get('/api/notes', async (_req, res) => {
-  const notes = await Note.findAll();
-  res.json(notes);
-});
-
-app.use(express.static(path.join(__dirname, './frontend')));
-
-app.get('*', (_req, res) => {
-  res.sendFile(path.join(__dirname, './frontend/index.html'));
-});
-
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+server.listen(PORT, () => {
+  logger.info(`Server running on port ${PORT}`);
 });
