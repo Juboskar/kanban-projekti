@@ -16,18 +16,49 @@ jobs:
         run: npm install
       - name: lint
         run: npm run lint
+      - name: Test
+        run: npm test
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          flags: frontend
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   backend:
     name: Backend tests
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: kanban-backend
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/kanban
     steps:
       - uses: actions/checkout@v3
-      - name: install packages
+      - name: Install packages
         run: npm install
-      - name: lint
+      - name: Lint
         run: npm run lint
+      - name: Test
+        run: npm test
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          flags: backend
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   deploy:
     name: Deploy app
     needs: [frontend, backend]
