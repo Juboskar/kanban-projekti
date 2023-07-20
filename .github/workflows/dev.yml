@@ -40,11 +40,11 @@ jobs:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/kanban
     steps:
       - uses: actions/checkout@v3
-      - name: install packages
+      - name: Install packages
         run: npm install
-      - name: lint
+      - name: Lint
         run: npm run lint
-      - name: test
+      - name: Test
         run: npm test
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
