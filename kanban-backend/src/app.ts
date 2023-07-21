@@ -1,13 +1,11 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import path from 'path';
 import { DataTypes, Model, Sequelize } from 'sequelize';
-
-dotenv.config();
+import { DATABASE_URL } from './utils/config';
 
 const app = express();
 
-const sequelize = new Sequelize(process.env.DATABASE_URL as string);
+const sequelize = new Sequelize(DATABASE_URL as string);
 
 class Note extends Model {}
 

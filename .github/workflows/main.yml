@@ -44,7 +44,7 @@ jobs:
         ports:
           - 5432:5432
     env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/kanban
+      TEST_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/kanban
     steps:
       - uses: actions/checkout@v3
       - name: Install packages
