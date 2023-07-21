@@ -4,10 +4,10 @@
   "description": "todo app with kanban board",
   "main": "index.js",
   "scripts": {
-    "start": "node build/index.js",
+    "start": "cross-env NODE_ENV=production node build/index.js",
     "tsc": "rm -rf build && tsc",
     "build": "npm install && rm -rf build && tsc && cd ../kanban-frontend && npm install && npm run build && mv build frontend && cp -r frontend ../kanban-backend/build && rm -rf frontend",
-    "dev": "ts-node-dev index.ts",
+    "dev": "cross-env NODE_ENV=development ts-node-dev index.ts",
     "lint": "eslint --ext .ts .",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --coverage"
   },
