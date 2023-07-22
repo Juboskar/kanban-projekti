@@ -1,47 +1,22 @@
 import express from 'express';
 import path from 'path';
-import { DataTypes, Model, Sequelize } from 'sequelize';
-import { DATABASE_URL } from './utils/config';
+import { connectToDatabase } from './utils/db';
+import tasksRouter from './controllers/tasks';
 
 const app = express();
 
-const sequelize = new Sequelize(DATABASE_URL as string);
+app.use(express.json());
 
-class Note extends Model {}
-
-Note.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-  },
-  {
-    sequelize,
-    underscored: true,
-    timestamps: false,
-    modelName: 'note',
-  }
-);
-
-app.get('/api/notes', async (_req, res) => {
-  const notes = await Note.findAll();
-  res.json(notes);
-});
-
-app.get('/ping', async (_req, res) => {
-  res.json('pong');
-});
+app.use('/api/tasks', tasksRouter);
 
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 app.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
+
+(async () => {
+  await connectToDatabase();
+})();
 
 export default app;

@@ -13,3 +13,13 @@ export const DATABASE_URL = (() => {
       return process.env.DATABASE_URL;
   }
 })();
+export const MIGRATIONS_PATH = (() => {
+  switch (NODE_ENV) {
+    case 'test':
+      return 'src/migrations/*.ts';
+    case 'development':
+      return 'src/migrations/*.ts';
+    default:
+      return 'build/src/migrations/*.js';
+  }
+})();
