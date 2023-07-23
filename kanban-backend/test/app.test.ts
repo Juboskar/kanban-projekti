@@ -3,6 +3,11 @@ import app from '../src/app';
 
 const api = supertest(app);
 
+test('health check', async () => {
+  const response = await api.get('/ping');
+  expect(response.status).toBe(200);
+});
+
 test('app starts', async () => {
   const response = await api.get('/api/tasks');
   expect(response.status).toBe(200);
