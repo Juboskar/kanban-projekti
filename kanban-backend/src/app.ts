@@ -9,6 +9,10 @@ app.use(express.json());
 
 app.use('/api/tasks', tasksRouter);
 
+app.get('/ping', (_req, res) => {
+  res.json('pong');
+});
+
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 app.get('*', (_req, res) => {
