@@ -17,6 +17,6 @@ const create = async (taskData: { content: string }) => {
   return task;
 };
 
-const TaskService = { getAll, create };
+const taskService = { getAll, create };
 
-export default TaskService;
+export default taskService;
