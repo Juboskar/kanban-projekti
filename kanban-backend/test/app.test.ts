@@ -4,10 +4,8 @@ import { connectToDatabase } from '../src/utils/db';
 
 const api = supertest(app);
 
-beforeAll(() => {
-  (async () => {
-    await connectToDatabase();
-  })();
+beforeAll(async () => {
+  await connectToDatabase();
 });
 
 test('health check', async () => {
