@@ -1,7 +1,14 @@
 import supertest from 'supertest';
 import app from '../src/app';
+import { connectToDatabase } from '../src/utils/db';
 
 const api = supertest(app);
+
+beforeEach(() => {
+  (async () => {
+    await connectToDatabase();
+  })();
+});
 
 test('health check', async () => {
   const response = await api.get('/ping');
