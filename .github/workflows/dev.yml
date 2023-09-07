@@ -35,6 +35,7 @@ jobs:
       postgres:
         image: postgres
         env:
+          POSTGRES_DB: postgres
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         options: >-
@@ -45,9 +46,13 @@ jobs:
         ports:
           - 5432:5432
     env:
-      TEST_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/kanban
+      TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
     steps:
       - uses: actions/checkout@v3
+      - name: Install node v19
+        uses: actions/setup-node@v1
+        with:
+          node-version: 19
       - name: Install packages
         run: npm install
       - name: Lint
