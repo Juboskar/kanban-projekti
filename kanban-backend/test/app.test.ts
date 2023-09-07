@@ -4,7 +4,7 @@ import { connectToDatabase } from '../src/utils/db';
 
 const api = supertest(app);
 
-beforeEach(() => {
+beforeAll(() => {
   (async () => {
     await connectToDatabase();
   })();
