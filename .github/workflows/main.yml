@@ -48,10 +48,10 @@ jobs:
       TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
     steps:
       - uses: actions/checkout@v3
-      - name: Install node v19
-        uses: actions/setup-node@v1
+      - name: Install node v18
+        uses: actions/setup-node@v3
         with:
-          node-version: 19
+          node-version: 18
       - name: Install packages
         run: npm install
       - name: Lint
