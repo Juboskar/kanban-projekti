@@ -3,8 +3,11 @@ import taskService from '../services/taskService';
 
 const tasksRouter = router.Router();
 
-tasksRouter.get('/', async (_req, res) => {
-  taskService.getAll().then((result) => res.status(200).send(result));
+tasksRouter.get('/', async (_req, res, next) => {
+  taskService
+    .getAll()
+    .then((result) => res.status(200).send(result))
+    .catch((error) => next(error));
 });
 
 tasksRouter.post('/', async (req, res) => {

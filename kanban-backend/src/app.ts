@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import tasksRouter from './controllers/tasks';
+import { errorHandler } from './utils/middleware';
 
 const app = express();
 
@@ -17,5 +18,7 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 app.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
+
+app.use(errorHandler);
 
 export default app;
