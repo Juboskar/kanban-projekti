@@ -9,7 +9,11 @@
     "build": "npm install && rm -rf build && tsc && cd ../kanban-frontend && npm install && npm run build && mv build frontend && cp -r frontend ../kanban-backend/build && rm -rf frontend",
     "dev": "cross-env NODE_ENV=development ts-node-dev index.ts",
     "lint": "eslint --ext .ts .",
-    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --coverage --detectOpenHandles --forceExit"
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --coverage --detectOpenHandles --forceExit",
+    "dev:migration-rollback": "cross-env NODE_ENV=development ts-node-dev src/utils/migrationTools/rollbackMigration.ts",
+    "dev:run-migrations": "cross-env NODE_ENV=development ts-node-dev src/utils/migrationTools/runMigrations.ts",
+    "prod:migration-rollback": "cross-env NODE_ENV=production node build/src/utils/migrationTools/rollbackMigration.js",
+    "prod:run-migrations": "cross-env NODE_ENV=production node build/src/utils/migrationTools/runMigrations.js"
   },
   "author": "juboskar",
   "license": "ISC",
