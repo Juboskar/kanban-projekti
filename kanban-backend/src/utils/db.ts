@@ -1,31 +1,37 @@
 import { Sequelize } from 'sequelize';
 import { DATABASE_URL, MIGRATIONS_PATH } from './config';
 import { Umzug, SequelizeStorage } from 'umzug';
+import logger from './logger';
 
 export const sequelize = new Sequelize(DATABASE_URL as string);
 
-const runMigrations = async () => {
-  const migrator = new Umzug({
-    migrations: {
-      glob: MIGRATIONS_PATH,
-    },
-    storage: new SequelizeStorage({ sequelize, tableName: 'migrations' }),
-    context: sequelize.getQueryInterface(),
-    logger: console,
-  });
+const migrator = new Umzug({
+  migrations: {
+    glob: MIGRATIONS_PATH,
+  },
+  storage: new SequelizeStorage({ sequelize, tableName: 'migrations' }),
+  context: sequelize.getQueryInterface(),
+  logger: console,
+});
+
+export const runMigrations = async () => {
   const migrations = await migrator.up();
-  console.log('Migrations up to date', {
-    files: migrations.map((mig) => mig.name),
-  });
+  logger.info('Migrations up to date ');
+  migrations.map((mig) => logger.info(mig.name));
+};
+
+export const rollbackMigration = async () => {
+  await sequelize.authenticate();
+  await migrator.down();
 };
 
 export const connectToDatabase = async () => {
   try {
     await sequelize.authenticate();
     await runMigrations();
-    console.log('database connected');
+    logger.info('database connected');
   } catch (err) {
-    console.log('connecting database failed');
+    logger.error('connecting database failed');
     return process.exit(1);
   }
   return null;
