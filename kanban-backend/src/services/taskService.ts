@@ -1,6 +1,4 @@
-import models from '../models';
-
-const Task = models.Task;
+import { Task } from '../models';
 
 const getAll = async () => {
   const tasks = await Task.findAll();
