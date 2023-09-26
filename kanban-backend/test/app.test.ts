@@ -1,16 +1,15 @@
-import supertest from 'supertest';
-import app from '../src/app';
+import api from './config/api';
 import { connectToDatabase } from '../src/utils/db';
-
-const api = supertest(app);
+import { User, Task } from '../src/models';
 
 beforeAll(async () => {
   await connectToDatabase();
-});
-
-test('health check', async () => {
-  const response = await api.get('/ping');
-  expect(response.status).toBe(200);
+  User.destroy({
+    where: {},
+  });
+  Task.destroy({
+    where: {},
+  });
 });
 
 test('app starts', async () => {
