@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import TextInput from '../../../components/TextInput';
+import TextInput from '../../../../components/TextInput';
 
 const SignUpForm = () => {
   const [username, setUsername] = useState('');
@@ -27,24 +27,31 @@ const SignUpForm = () => {
 
   return (
     <div>
-      <h2>Login</h2>
       <TextInput
         placeholder="username"
         value={username}
         onChange={handleUsernameChange}
+        required
       />
-      <TextInput placeholder="name" value={name} onChange={handleNameChange} />
+      <TextInput
+        placeholder="name"
+        value={name}
+        onChange={handleNameChange}
+        required
+      />
       <TextInput
         placeholder="password"
         value={password}
         onChange={handlePasswordChange}
         type="password"
+        required
       />
       <TextInput
         placeholder="confirm password"
         value={confirmPassword}
         onChange={handleConfirmPasswordChange}
         type="password"
+        required
       />
       <button>Sign Up</button>
     </div>
