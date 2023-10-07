@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import TextInput from '../../../../components/TextInput';
+import Button from '../../../../components/Button';
 
 const SignUpForm = () => {
   const [username, setUsername] = useState('');
@@ -53,7 +54,7 @@ const SignUpForm = () => {
         type="password"
         required
       />
-      <button>Sign Up</button>
+      <Button>Sign up</Button>
     </div>
   );
 };
