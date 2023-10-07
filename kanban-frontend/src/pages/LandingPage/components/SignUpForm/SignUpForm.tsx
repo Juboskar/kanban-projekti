@@ -29,26 +29,26 @@ const SignUpForm = () => {
   return (
     <div>
       <TextInput
-        placeholder="username"
+        label="username"
         value={username}
         onChange={handleUsernameChange}
         required
       />
       <TextInput
-        placeholder="name"
+        label="name"
         value={name}
         onChange={handleNameChange}
         required
       />
       <TextInput
-        placeholder="password"
+        label="password"
         value={password}
         onChange={handlePasswordChange}
         type="password"
         required
       />
       <TextInput
-        placeholder="confirm password"
+        label="confirm password"
         value={confirmPassword}
         onChange={handleConfirmPasswordChange}
         type="password"

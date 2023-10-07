@@ -2,14 +2,14 @@ import React, { ChangeEventHandler } from 'react';
 import RequiredAsterisk from '../RequiredAsterisk';
 
 interface TextInputProps {
-  placeholder?: string;
+  label?: string;
   value: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
   type?: string;
   required?: boolean;
 }
 const TextInput = ({
-  placeholder,
+  label,
   value,
   onChange,
   type,
@@ -40,7 +40,7 @@ const TextInput = ({
               peer-[:not([value=''])]:pt-1 peer-[:not([value=''])]:text-sm 
               peer-[:not([value=''])]:text-black"
           >
-            {placeholder}
+            {label}
             {required && <RequiredAsterisk />}
           </span>
         </label>
