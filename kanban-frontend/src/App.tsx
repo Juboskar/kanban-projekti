@@ -7,7 +7,7 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="font-mono tracking-wide">
+      <div>
         <LandingPage />
       </div>
     </QueryClientProvider>
