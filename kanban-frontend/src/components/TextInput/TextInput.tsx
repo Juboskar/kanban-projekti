@@ -26,16 +26,19 @@ const TextInput = ({
           <input
             required={required}
             type={type}
-            className="peer w-full rounded border-2 border-gray-600 p-2"
+            className="peer w-full rounded border-2 border-black p-2"
             value={value}
             onChange={onChange}
           />
           <span
-            className="text-md pointer-events-none absolute left-3 top-2.5 text-gray-600 
-            transition peer-focus:-translate-y-6 peer-focus:bg-white peer-focus:px-1 peer-focus:pt-1 peer-focus:text-sm
-            peer-focus:text-black peer-[:not([value=''])]:-translate-y-6  peer-[:not([value=''])]:bg-white 
-            peer-[:not([value=''])]:px-1 peer-[:not([value=''])]:pt-1 peer-[:not([value=''])]:text-sm
-             peer-[:not([value=''])]:text-black"
+            className="text-md pointer-events-none absolute left-3 top-2.5 
+              text-gray-400 transition peer-focus:-translate-y-6 
+              peer-focus:bg-white peer-focus:px-1 peer-focus:pt-1 
+              peer-focus:text-sm peer-focus:text-black 
+              peer-[:not([value=''])]:-translate-y-6  
+              peer-[:not([value=''])]:bg-white  peer-[:not([value=''])]:px-1 
+              peer-[:not([value=''])]:pt-1 peer-[:not([value=''])]:text-sm 
+              peer-[:not([value=''])]:text-black"
           >
             {placeholder}
             {required && <RequiredAsterisk />}
