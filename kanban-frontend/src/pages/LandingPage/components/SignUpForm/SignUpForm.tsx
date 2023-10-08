@@ -1,61 +1,41 @@
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import TextInput from '../../../../components/TextInput';
 import Button from '../../../../components/Button';
 
+interface FormValues {
+  username: string;
+  name: string;
+  password: string;
+  confirmPassword: string;
+}
+
 const SignUpForm = () => {
-  const [username, setUsername] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-
-  const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
-  };
-
-  const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-  };
-
-  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
-
-  const handleConfirmPasswordChange = (
-    event: ChangeEvent<HTMLInputElement>
-  ) => {
-    setConfirmPassword(event.target.value);
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
 
   return (
-    <div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <TextInput {...register('username')} label="username" required />
+      <TextInput {...register('name')} label="name" required />
       <TextInput
-        label="username"
-        value={username}
-        onChange={handleUsernameChange}
-        required
-      />
-      <TextInput
-        label="name"
-        value={name}
-        onChange={handleNameChange}
-        required
-      />
-      <TextInput
+        {...register('password')}
         label="password"
-        value={password}
-        onChange={handlePasswordChange}
-        type="password"
         required
+        type="password"
       />
       <TextInput
-        label="confirm password"
-        value={confirmPassword}
-        onChange={handleConfirmPasswordChange}
-        type="password"
+        {...register('confirmPassword')}
+        label="confirmPassword"
         required
+        type="password"
       />
       <Button>Sign up</Button>
-    </div>
+    </form>
   );
 };
 
