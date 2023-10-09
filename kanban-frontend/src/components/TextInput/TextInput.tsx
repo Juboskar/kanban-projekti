@@ -27,7 +27,9 @@ const TextInput = forwardRef(
             />
             <span
               className="text-md pointer-events-none absolute left-3 top-2.5 
-              text-gray-400 transition placeholder-shown:text-red-700 
+              text-gray-400 transition peer-focus:-translate-y-6 
+              peer-focus:bg-white peer-focus:px-1 peer-focus:pt-1 
+              peer-focus:text-sm peer-focus:text-black
               peer-[:not(:placeholder-shown)]:-translate-y-6  
               peer-[:not(:placeholder-shown)]:bg-white 
               peer-[:not(:placeholder-shown)]:px-1 
