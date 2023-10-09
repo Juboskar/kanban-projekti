@@ -18,7 +18,6 @@ const TextInput = forwardRef(
             <input
               name={name}
               ref={ref as any}
-              required={required}
               type={type ? type : 'text'}
               className="peer w-full rounded border-2 border-black p-2"
               onChange={onChange}
