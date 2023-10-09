@@ -8,7 +8,7 @@ const LandingPage = () => {
       <h1 className="max-w-sm p-4 align-baseline text-4xl">
         Kanban tool for project management
       </h1>
-      <div className=" pt-16">
+      <div className="pt-16">
         <Card>
           <SignUpForm />
         </Card>

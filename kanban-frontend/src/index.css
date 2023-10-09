@@ -6,4 +6,8 @@
     html {
         @apply bg-slate-300 font-mono tracking-wide;
     }
+
+    p {
+        @apply p-4;
+    }
 }
