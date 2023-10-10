@@ -8,6 +8,14 @@ const getAll = async () => {
   return users;
 };
 
+const getOne = async (username: string) => {
+  const user = await User.findOne({
+    where: { username },
+    attributes: { exclude: ['password'] },
+  });
+  return user;
+};
+
 const create = async (userData: {
   name: string;
   username: string;
@@ -25,6 +33,6 @@ const create = async (userData: {
   return user;
 };
 
-const userService = { getAll, create };
+const userService = { getAll, getOne, create };
 
 export default userService;
