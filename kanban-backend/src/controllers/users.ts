@@ -2,7 +2,6 @@ import { Router } from 'express';
 import userService from '../services/userService';
 import { validate } from '../utils/middleware';
 import { userData } from '../schemas/userData';
-import logger from '../utils/logger';
 
 const usersRouter = Router();
 
