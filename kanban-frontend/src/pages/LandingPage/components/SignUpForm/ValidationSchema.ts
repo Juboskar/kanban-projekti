@@ -5,12 +5,12 @@ export const userSchema = yup.object({
     .string()
     .required()
     .min(3)
-    .max(50)
+    .max(20)
     .matches(/^.[a-zA-Z0-9]+$/, {
       message: 'Username must contain only letters and numbers',
       excludeEmptyString: true,
     }),
-  name: yup.string().required().min(3).max(20),
+  name: yup.string().required().min(3).max(50),
   password: yup.string().required().min(8).max(200),
   confirmPassword: yup
     .string()
