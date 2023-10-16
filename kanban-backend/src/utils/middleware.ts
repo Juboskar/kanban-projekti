@@ -15,6 +15,10 @@ export const errorHandler = (
     return res.status(403).json({ error: error.message });
   }
 
+  if (error.name === 'NotFoundError') {
+    return res.status(404).json({ error: error.message });
+  }
+
   return res.status(500).json({ error: 'Internal Server Error' });
   next(error);
 };
