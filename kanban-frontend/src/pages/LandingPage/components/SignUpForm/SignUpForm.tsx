@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import useCreateUser from './hooks/useCreateUser';
 import TextInput from '../../../../components/TextInput';
 import Button from '../../../../components/Button';
 import { UserData } from './types';
-import { userSchema } from './ValidationSchema';
 import ErrorField from '../../../../components/ErrorField';
+import useYupValidationResolver from './hooks/useYupValidationResolver';
+import { validationSchema } from './ValidationSchema';
 
 const SignUpForm = () => {
+  const [cachedAvailableUsers] = useState<string[]>([]);
+  const [cachedExistingUsers] = useState<string[]>([]);
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<UserData>({
-    resolver: yupResolver(userSchema),
+    resolver: useYupValidationResolver(
+      validationSchema(cachedAvailableUsers, cachedExistingUsers)
+    ),
   });
   const { mutate, isLoading, isError, error, isSuccess, data } =
     useCreateUser();
   const onSubmit: SubmitHandler<UserData> = (userData) => {
-    mutate(userData);
+    if (isValid) {
+      mutate(userData);
+    }
   };
 
   if (isLoading) return <p>Loading...</p>;
