@@ -1,13 +1,15 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import Todos from './Todos';
+import LandingPage from './pages/LandingPage';
 
 const App = () => {
   const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Todos />
+      <div>
+        <LandingPage />
+      </div>
     </QueryClientProvider>
   );
 };
