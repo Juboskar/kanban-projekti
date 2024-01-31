@@ -10,11 +10,11 @@ export const validationSchema = (
       .required()
       .min(3)
       .max(20)
-      .matches(/^.[a-zA-Z0-9]+$/, {
-        message: 'Username must contain only letters and numbers',
+      .matches(/^[a-zA-Z0-9]+$/, {
+        message: 'username must contain only letters and numbers',
         excludeEmptyString: true,
       })
-      .test('username', 'Username already exists', (username) => {
+      .test('username', 'username already exists', (username) => {
         return new Promise((resolve) => {
           if (
             username.length >= 3 &&
@@ -41,7 +41,7 @@ export const validationSchema = (
     password: yup.string().required().min(8).max(200),
     confirmPassword: yup
       .string()
-      .required('Please confirm your password')
-      .oneOf([yup.ref('password')], 'Passwords must match'),
+      .required('please confirm your password')
+      .oneOf([yup.ref('password')], 'passwords must match'),
   });
 };
