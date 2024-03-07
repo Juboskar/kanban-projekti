@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import SignUpForm from './components/SignUpForm';
-import Card from '../../components/Card';
 import CardNavigation from './components/CardNavigation';
 import CardContent from './components/CardContent';
 
