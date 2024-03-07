@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SignUpForm from './components/SignUpForm';
 import Card from '../../components/Card';
 import CardNavigation from './components/CardNavigation';
+import CardContent from './components/CardContent';
 
 const LandingPage = () => {
   const [showLogin, setShowLogin] = useState<boolean>(false);
@@ -13,10 +14,10 @@ const LandingPage = () => {
       </h1>
       <div className="py-16">
         <CardNavigation setShowLogin={setShowLogin} showLogin={showLogin} />
-        <Card>
-          {!showLogin && <SignUpForm />}
-          {showLogin && <p>todo login</p>}
-        </Card>
+        <CardContent showLogin={showLogin}>
+          <SignUpForm />
+          <div>todo login</div>
+        </CardContent>
       </div>
     </div>
   );
