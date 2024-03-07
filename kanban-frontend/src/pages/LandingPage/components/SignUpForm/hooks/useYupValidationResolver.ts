@@ -22,6 +22,7 @@ const useYupValidationResolver = (
             errors: errors.inner.reduce(
               (allErrors, currentError) => ({
                 ...allErrors,
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 [currentError.path!]: {
                   type: currentError.type ?? 'validation',
                   message: currentError.message,

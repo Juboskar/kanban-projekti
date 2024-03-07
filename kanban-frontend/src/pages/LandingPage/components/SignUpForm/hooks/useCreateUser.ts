@@ -18,6 +18,7 @@ const createUser = async (userData: UserData) => {
 
 const useCreateUser = () => {
   return useMutation(createUser, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onError: (error: any) => {
       return error;
     },
